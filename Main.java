@@ -8,6 +8,7 @@ import java.util.Scanner;
 //getters and setter for static variables in Organism
 
 //inheritance with subclass default constructors
+//import
 public class Main {
     static ArrayList<Organism> allOrgs = new ArrayList<>();
     public static void main(String[] args) {
