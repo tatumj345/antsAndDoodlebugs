@@ -55,8 +55,8 @@ public class dB extends Organism{
            addSurvivalCount();
        }
        if (turnsSinceEaten >= 3){ //change to dead
-           //this.die();
-           Main.allOrgs.remove(this);
+           this.die();
+           this.deleteOrg();
        }
        else{
            //the dB hasn't been deleted and can reproduce
