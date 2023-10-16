@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 //getters and setter for static variables in Organism
 //put in habitat capacity function
-//doodlebugs are miraculously becoming alive again
 
 //inheritance with subclass default constructors
 //import
@@ -183,7 +182,7 @@ public class Main {
                 }
 
 
-
+                //printArrayList(allOrgs.get(0).getValidCoords());
 
                 for (int i = 0; i < allOrgs.size(); i++) {
                     //System.out.println("Org: "+allOrgs.get(i).getX()+" "+allOrgs.get(i).getY());
@@ -194,12 +193,13 @@ public class Main {
 
                      */
                 }
+                //System.out.println(allOrgs.size());
              //habitat = allOrgs.size();
                 readin = scnr.nextLine();
             }
         }
 
-        System.out.println("Habitat is at capacity.");
+        //System.out.println("Habitat is at capacity.");
 
 
 

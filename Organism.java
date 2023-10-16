@@ -123,15 +123,26 @@ public void draw(){
 
     public void reproduce(){
         ArrayList<ArrayList<Integer>> validCoords = this.getValidCoords(); //get all empty coords around organism
-        //create a new object in a random coord
-        Random rand = new Random();
 
-        ArrayList<Integer> randomCoord = validCoords.get(rand.nextInt(validCoords.size()));
-        if (this instanceof dB){ //should fix this if loop to be more than two options for subclass in case want to add more
-            Main.allOrgs.add(new dB(randomCoord.get(0),randomCoord.get(1),panel,Color.RED));
-        }
-        else if (this instanceof Ants){
-            Main.allOrgs.add(new Ants(randomCoord.get(0),randomCoord.get(1),panel,Color.BLACK));
+        //don't reproduce in same cell
+        ArrayList<Integer> current = new ArrayList<>();
+        current.add(this.getX());
+        current.add(this.getY());
+
+        //System.out.println(this.getX()+" "+this.getY());
+
+        validCoords.remove(current);
+
+        if (validCoords.size() != 0) {
+            //create a new object in a random coord
+            Random rand = new Random();
+
+            ArrayList<Integer> randomCoord = validCoords.get(rand.nextInt(validCoords.size()));
+            if (this instanceof dB) { //should fix this if loop to be more than two options for subclass in case want to add more
+                Main.allOrgs.add(new dB(randomCoord.get(0), randomCoord.get(1), panel, Color.RED));
+            } else if (this instanceof Ants) {
+                Main.allOrgs.add(new Ants(randomCoord.get(0), randomCoord.get(1), panel, Color.BLACK));
+            }
         }
     }
 
