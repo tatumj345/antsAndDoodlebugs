@@ -35,10 +35,11 @@ public class Organism {
         this.color = color;
     }
 
-
-
-
-
+    public void move(ArrayList<Integer> coords){ //maybe add something here to make sure coords is 2 long
+        //move to the coord pair specified by the input
+        this.setX(coords.get(0));
+        this.setY(coords.get(1));
+    }
 
 
 public void draw(){
@@ -64,8 +65,6 @@ public void draw(){
             this.y = y;
         }
     }
-
-
 
 
 
@@ -117,10 +116,45 @@ public void draw(){
         this.dead = true;
     }
 
-    public ArrayList<ArrayList<Integer>> getValidCoords() {
+    public boolean isDead(){
+        return dead;
+    }
 
 
-        ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
-        return arrayList;
+    public void reproduce(){
+        ArrayList<ArrayList<Integer>> validCoords = this.getValidCoords(); //get all empty coords around organism
+        //create a new object in a random coord
+        Random rand = new Random();
+
+        ArrayList<Integer> randomCoord = validCoords.get(rand.nextInt(validCoords.size()));
+        if (this instanceof dB){ //should fix this if loop to be more than two options for subclass in case want to add more
+            Main.allOrgs.add(new dB(randomCoord.get(0),randomCoord.get(1),panel,Color.RED));
+        }
+        else if (this instanceof Ants){
+            Main.allOrgs.add(new Ants(randomCoord.get(0),randomCoord.get(1),panel,Color.BLACK));
+        }
+    }
+
+    public ArrayList<ArrayList<Integer>> getValidCoords(){ // this is where we can move
+        //first, get all coords around ant
+        ArrayList<ArrayList<Integer>> allCoordsAround = this.getCoordsAround();
+
+        //now, get the coords that have a dB in them. we'll remove these from allCoordsAround
+        ArrayList<ArrayList<Integer>> coordsWithdB = Main.coordsArounddB(this, Main.allOrgs);
+        //now, get the coords that have an ant in them. we'll remove these from allCoordsAround
+        ArrayList<ArrayList<Integer>> coordsWithAnt = Main.coordsAroundAnt(this, Main.allOrgs);
+
+
+        allCoordsAround.removeAll(coordsWithdB);
+        allCoordsAround.removeAll(coordsWithAnt);
+
+        if (allCoordsAround.size() == 0){
+            ArrayList<Integer> newA = new ArrayList<>();
+            newA.add(this.getX());
+            newA.add(this.getY());
+            allCoordsAround.add(newA);
+        }
+
+        return allCoordsAround;
     }
 }

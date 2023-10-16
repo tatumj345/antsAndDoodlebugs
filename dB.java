@@ -19,6 +19,50 @@ public class dB extends Organism{
 
         allCoordsAround.removeAll(coordsWithdB);
 
+        if (allCoordsAround.size() == 0){
+            ArrayList<Integer> newA = new ArrayList<>();
+            newA.add(this.getX());
+            newA.add(this.getY());
+            allCoordsAround.add(newA);
+        }
+
         return allCoordsAround;
+    }
+
+    public void move(ArrayList<Integer> coords){
+        super.move(coords); //first, move the dB
+        //check if the dB moved to a cell with an Ant. if so,  change the Ant's status to dead
+        boolean hasEaten = false;
+        int eatIndex = 0;
+        ArrayList<ArrayList<Integer>> allCurrentPosAnt = new ArrayList<>();
+        for (int i = 0; i < Main.allOrgs.size(); i++){
+            //get all coordpairs for ants
+            if (Main.allOrgs.get(i) instanceof Ants) {
+                if (this.getX() == Main.allOrgs.get(i).getX() && this.getY() == Main.allOrgs.get(i).getY()){
+                    //Main.allOrgs.get(i).die(); //change to dead
+                    eatIndex = i;
+                    //set turnsSinceEaten to 0 again
+                    hasEaten = true;
+                }
+            }
+        }
+       if (hasEaten){
+           Main.allOrgs.remove(Main.allOrgs.get(eatIndex));
+           turnsSinceEaten = 0;
+       }
+       else {
+           turnsSinceEaten++;
+           addSurvivalCount();
+       }
+       if (turnsSinceEaten >= 3){ //change to dead
+           //this.die();
+           Main.allOrgs.remove(this);
+       }
+       else{
+           //the dB hasn't been deleted and can reproduce
+           if (getSurvivalCount() % 8 == 0 && getSurvivalCount() > 0){
+               reproduce();
+           }
+       }
     }
 }

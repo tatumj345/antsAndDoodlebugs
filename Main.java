@@ -6,9 +6,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 //getters and setter for static variables in Organism
+//put in habitat capacity function
+//doodlebugs are miraculously becoming alive again
 
 //inheritance with subclass default constructors
 //import
+//setters and getters for turnsSinceEaten
+//cite drawing panel
 public class Main {
     static ArrayList<Organism> allOrgs = new ArrayList<>();
     public static void main(String[] args) {
@@ -86,22 +90,118 @@ public class Main {
         //Bounds for organisms in y: [buffer, buffer + rowmax*cellDimension]
 
         //ArrayList<Organism> allOrgs = new ArrayList<>();
+        Random rand = new Random();
+        ArrayList<ArrayList<Integer>> allInitial = new ArrayList<>();
+        for (int row = 0; row < rowmax; row++){
+            for (int col = 0; col < colmax; col++){
+                gBlack.drawRect(buffer+col*cellDimension, buffer+row*cellDimension, cellDimension, cellDimension);
+                ArrayList<Integer> newA = new ArrayList<>();
+                newA.add(buffer+col*cellDimension);
 
+                newA.add(buffer+row*cellDimension);
+                //System.out.println(newA.get(0)+" "+newA.get(1));
+                allInitial.add(newA);
+            }
+        }
         //create all organisms in dB
-        for (int i = 0; i < dBCount; i++){
-            allOrgs.add(new dB(0,0,panel, Color.RED));
+        for (int i = 0; i < antsCount; i++) {
+            ArrayList<Integer> myPos = allInitialPos.get(rand.nextInt(allInitialPos.size()));
+            //System.out.println("x: "+myPos.get(0)+ " y: "+myPos.get(1));
+            allOrgs.add(new Ants(myPos.get(0), myPos.get(1), panel, Color.BLACK));
+            //delete myPos from allInitialPos
+            allInitialPos.remove(myPos);
+
         }
 
-        //create all organisms in ants
-        for (int i = 0; i < antsCount; i++){
-            allOrgs.add(new Ants(buffer+cellDimension,buffer,panel, Color.BLACK));
+
+        for (int i = 0; i < dBCount; i++) {
+            ArrayList<Integer> myPosdB = allInitialPos.get(rand.nextInt(allInitialPos.size()));
+
+            allOrgs.add(new dB(myPosdB.get(0), myPosdB.get(1), panel, Color.RED));
+            allInitialPos.remove(myPosdB);
         }
 
-        //draw all Orgs in allOrgs
+        /*
+        //test- move to random coord in array returned by getValidCoords
+        Random rand = new Random();
+        allOrgs.get(0).move(allOrgs.get(0).getValidCoords().get(rand.nextInt(allOrgs.get(0).getValidCoords().size())));
+            */
+
         for (int i = 0; i < allOrgs.size(); i++){
-            printArrayList(allOrgs.get(i).getValidCoords());
             allOrgs.get(i).draw();
         }
+
+        //main loop
+
+
+        int j = 0;
+        String readin = scnr.nextLine();
+        int habitat = 0;
+
+        while(scnr.hasNextLine() && habitat <= maxOrgs) {
+
+            if (readin.equals("")) {
+                //panel.sleep(500);
+                panel.clear();
+                System.out.println("Timestep: " + (j + 1));
+                j++;
+                //grid
+                gBlack.setColor(Color.BLACK);
+                for (int row = 0; row < rowmax; row++) {
+                    for (int col = 0; col < colmax; col++) {
+                        gBlack.drawRect(buffer + col * cellDimension, buffer + row * cellDimension, cellDimension, cellDimension);
+                    }
+                }
+
+                //orgs
+                //start with dbs, then go to ants
+
+                for (int i = 0; i < allOrgs.size(); i++) {
+                    if (allOrgs.get(i) instanceof dB) {
+                        //printArrayList(allOrgs.get(i).getCoordsAround());
+                        if (allOrgs.get(i).isDead()){
+                            //delete
+                            allOrgs.remove(allOrgs.get(i));
+                        }
+                        else {
+                            allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
+                        }
+                    }
+                }
+
+
+                for (int i = 0; i < allOrgs.size(); i++) {
+                    if (allOrgs.get(i) instanceof Ants) {
+                        if (allOrgs.get(i).isDead()){
+                            //delete
+                            allOrgs.remove(allOrgs.get(i));
+                        }
+                        else {
+                            allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
+                        }
+                    }
+                }
+
+
+
+
+                for (int i = 0; i < allOrgs.size(); i++) {
+                    //System.out.println("Org: "+allOrgs.get(i).getX()+" "+allOrgs.get(i).getY());
+                    allOrgs.get(i).draw();
+                    /*if (allOrgs.get(i) instanceof dB){
+                        System.out.println(1);
+                    }
+
+                     */
+                }
+             //habitat = allOrgs.size();
+                readin = scnr.nextLine();
+            }
+        }
+
+        System.out.println("Habitat is at capacity.");
+
+
 
     }
 
@@ -157,5 +257,7 @@ public class Main {
         }
     }
     }
+
+
 
 

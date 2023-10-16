@@ -8,6 +8,7 @@ public class Ants extends Organism{
 
     }
 
+    /* //defined in organism now. Ants uses it, but it can also be used in reproduce
     public ArrayList<ArrayList<Integer>> getValidCoords(){ // this is where we can move
         //first, get all coords around ant
         ArrayList<ArrayList<Integer>> allCoordsAround = this.getCoordsAround();
@@ -22,5 +23,15 @@ public class Ants extends Organism{
         allCoordsAround.removeAll(coordsWithAnt);
 
         return allCoordsAround;
+    }
+
+     */
+
+    public void move(ArrayList<Integer> coords){
+        super.move(coords); //move to valid spot
+        addSurvivalCount();
+        if (getSurvivalCount() % 3 == 0 && getSurvivalCount() > 0){
+            reproduce();
+        }
     }
 }
