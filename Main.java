@@ -1,4 +1,5 @@
 
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -187,6 +188,7 @@ public class Main {
                         } else {
                             //implement draw in move
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
+
                         }
                     }
                 }
