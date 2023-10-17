@@ -6,7 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 //getters and setter for static variables in Organism
-//put in habitat capacity function
+
+//add graphing functionality
 
 //inheritance with subclass default constructors
 //import
