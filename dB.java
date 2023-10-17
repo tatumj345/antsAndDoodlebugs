@@ -65,7 +65,6 @@ public class dB extends Organism{
        }
        if (turnsSinceEaten >= 3){ //change to dead
            this.die();
-           //Main.allOrgs.remove(this);
        }
        else{
            //the dB hasn't been deleted and can reproduce

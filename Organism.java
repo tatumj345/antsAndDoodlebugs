@@ -37,8 +37,22 @@ public class Organism {
 
     public void move(ArrayList<Integer> coords){ //maybe add something here to make sure coords is 2 long
         //move to the coord pair specified by the input
+        Graphics gBlack = this.panel.getGraphics();
+        gBlack.setColor(Color.white);
+        gBlack.fillRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
+        gBlack.setColor(Color.black);
+        gBlack.drawRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
+        if (coords.size() == 0){
+            coords.add(this.getX());
+            coords.add(this.getY());
+        }
+
+
         this.setX(coords.get(0));
         this.setY(coords.get(1));
+
+        this.draw();
+
     }
 
 
@@ -120,6 +134,17 @@ public void draw(){
         return dead;
     }
 
+    public void deleteOrg() {
+        //draw a single grid in the place of organism. then delete from array.
+        Graphics gBlack = this.panel.getGraphics();
+        gBlack.setColor(Color.white);
+        gBlack.fillRect(this.getX(), this.getY(), (this.cellDimension), (this.cellDimension));
+        gBlack.setColor(Color.BLACK);
+        gBlack.drawRect(this.getX(), this.getY(), (this.cellDimension), (this.cellDimension));
+        //remove myOrg from allOrgs- not yet! do the actual removal in main
+        //Main.allOrgs.remove(this);
+    }
+
 
     public void reproduce(){
         ArrayList<ArrayList<Integer>> validCoords = this.getValidCoords(); //get all empty coords around organism
@@ -140,8 +165,10 @@ public void draw(){
             ArrayList<Integer> randomCoord = validCoords.get(rand.nextInt(validCoords.size()));
             if (this instanceof dB) { //should fix this if loop to be more than two options for subclass in case want to add more
                 Main.allOrgs.add(new dB(randomCoord.get(0), randomCoord.get(1), panel, Color.RED));
+                Main.allOrgs.get(Main.allOrgs.size()-1).draw();
             } else if (this instanceof Ants) {
                 Main.allOrgs.add(new Ants(randomCoord.get(0), randomCoord.get(1), panel, Color.BLACK));
+                Main.allOrgs.get(Main.allOrgs.size()-1).draw();
             }
         }
     }

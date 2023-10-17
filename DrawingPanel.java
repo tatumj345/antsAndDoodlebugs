@@ -1029,6 +1029,8 @@ public final class DrawingPanel implements ImageObserver {
 		}
 		image.setRGB(0, 0, width, height, pixels, 0, 1);
 	}
+
+
 	
 	/*
 	 * Compares the current DrawingPanel image to an image file on disk.
