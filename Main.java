@@ -1,4 +1,9 @@
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//Name: Tatum Johnson
+//Date: 10-16-23
+//Description: MainOrganism.java- Runs predator/prey simulation. Predators are the doodlebugs (red)
+//             and the prey is the ants (black).
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -177,6 +182,7 @@ public class Main {
                         }
                         else {
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
+
                         }
                     }
                 }
