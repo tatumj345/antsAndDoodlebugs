@@ -128,6 +128,7 @@ public class Main {
 
         for (int i = 0; i < allOrgs.size(); i++) {
             allOrgs.get(i).draw();
+           // allOrgs.get(i).deleteOrg();
         }
 
         //main loop
@@ -162,12 +163,14 @@ public class Main {
                 for (int i = 0; i < allOrgs.size(); i++) {
                     if (allOrgs.get(i) instanceof dB) {
                         //printArrayList(allOrgs.get(i).getCoordsAround());
+
                         if (allOrgs.get(i).isDead()) {
                             //delete
-                            //allOrgs.remove(allOrgs.get(i));
+                            allOrgs.get(i).deleteOrg(); //draw blank grid over space where org was
+                            allOrgs.remove(allOrgs.get(i)); //remove it.
 
-                            //new delete method: deletes from array and draws blank grid in place
-                            allOrgs.get(i).deleteOrg();
+
+
                         } else {
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
                         }
@@ -178,8 +181,8 @@ public class Main {
                 for (int i = 0; i < allOrgs.size(); i++) {
                     if (allOrgs.get(i) instanceof Ants) {
                         if (allOrgs.get(i).isDead()) {
-                            //deletes from array and draws blank grid in place
-                            allOrgs.get(i).deleteOrg();
+                            //allOrgs.get(i).deleteOrg(); //draw blank grid over the space where the org was
+                            allOrgs.remove(allOrgs.get(i)); //delete it from array
 
                         } else {
                             //implement draw in move

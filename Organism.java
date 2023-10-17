@@ -37,22 +37,22 @@ public class Organism {
 
     public void move(ArrayList<Integer> coords){ //maybe add something here to make sure coords is 2 long
         //move to the coord pair specified by the input
+        Graphics gBlack = this.panel.getGraphics();
+        gBlack.setColor(Color.white);
+        gBlack.fillRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
+        gBlack.setColor(Color.black);
+        gBlack.drawRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
+        if (coords.size() == 0){
+            coords.add(this.getX());
+            coords.add(this.getY());
+        }
 
-        int oldX = this.getX();
-        int oldY = this.getY();
+
         this.setX(coords.get(0));
         this.setY(coords.get(1));
 
-        if (!(this.getX() == oldX && this.getY() == oldY)){
-            //we moved
-            //draw blank rectangle in old position
-            Graphics gBlack = this.panel.getGraphics();
-            gBlack.drawRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
+        this.draw();
 
-            //draw organism in new position
-            this.draw();
-        }
-        //if didn't move, don't do anything
     }
 
 
@@ -137,10 +137,12 @@ public void draw(){
     public void deleteOrg() {
         //draw a single grid in the place of organism. then delete from array.
         Graphics gBlack = this.panel.getGraphics();
+        gBlack.setColor(Color.white);
+        gBlack.fillRect(this.getX(), this.getY(), (this.cellDimension), (this.cellDimension));
         gBlack.setColor(Color.BLACK);
-        gBlack.drawRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);
-        //remove myOrg from allOrgs
-        Main.allOrgs.remove(this);
+        gBlack.drawRect(this.getX(), this.getY(), (this.cellDimension), (this.cellDimension));
+        //remove myOrg from allOrgs- not yet! do the actual removal in main
+        //Main.allOrgs.remove(this);
     }
 
 

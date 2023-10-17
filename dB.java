@@ -47,7 +47,8 @@ public class dB extends Organism{
             }
         }
        if (hasEaten){
-           Main.allOrgs.remove(Main.allOrgs.get(eatIndex));
+           //Main.allOrgs.remove(Main.allOrgs.get(eatIndex));
+           Main.allOrgs.get(eatIndex).die();
            turnsSinceEaten = 0;
        }
        else {
@@ -56,7 +57,7 @@ public class dB extends Organism{
        }
        if (turnsSinceEaten >= 3){ //change to dead
            this.die();
-           this.deleteOrg();
+           //this.deleteOrg(); delete in main instead
        }
        else{
            //the dB hasn't been deleted and can reproduce
