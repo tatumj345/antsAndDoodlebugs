@@ -30,6 +30,7 @@ public class dB extends Organism{
     }
 
     public void move(ArrayList<Integer> coords){
+        System.out.println("in db move");
         super.move(coords); //first, move the dB
         //check if the dB moved to a cell with an Ant. if so,  change the Ant's status to dead
         boolean hasEaten = false;
@@ -47,7 +48,8 @@ public class dB extends Organism{
             }
         }
        if (hasEaten){
-           Main.allOrgs.remove(Main.allOrgs.get(eatIndex));
+           //Main.allOrgs.remove(Main.allOrgs.get(eatIndex));
+           Main.allOrgs.get(eatIndex).die();
            turnsSinceEaten = 0;
        }
        else {
@@ -55,8 +57,8 @@ public class dB extends Organism{
            addSurvivalCount();
        }
        if (turnsSinceEaten >= 3){ //change to dead
-           //this.die();
-           Main.allOrgs.remove(this);
+           this.die();
+           //Main.allOrgs.remove(this);
        }
        else{
            //the dB hasn't been deleted and can reproduce

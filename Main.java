@@ -177,6 +177,7 @@ public class Main {
                         }
                         else {
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
+
                         }
                     }
                 }
