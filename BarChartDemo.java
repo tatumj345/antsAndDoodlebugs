@@ -50,7 +50,9 @@ import org.jfree.chart.StandardChartTheme;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.DatasetRenderingOrder;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -64,18 +66,18 @@ public class BarChartDemo extends ApplicationFrame {
     static {
         // set a theme using the new shadow generator feature available in
         // 1.0.14 - for backwards compatibility it is not enabled by default
-        ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
-                true));
+        //ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
+               // true));
     }
 
     /**
      * Creates a new demo instance.
      *
-     * @param title the frame title.
+     * @param dataset the data to plot.
      */
-    public BarChartDemo(String title) {
-        super(title);
-        CategoryDataset dataset = createDataset();
+    public BarChartDemo(CategoryDataset dataset) {
+        super("Population"); //from ApplicationFrame
+        //CategoryDataset dataset = createDataset(); //bar chart settings
         JFreeChart chart = createChart(dataset);
         ChartPanel chartPanel = new ChartPanel(chart, false);
         chartPanel.setBackground(null);
@@ -92,11 +94,20 @@ public class BarChartDemo extends ApplicationFrame {
      * @return The dataset.
      */
     private static CategoryDataset createDataset() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        /*
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //where add values to be plotted
         dataset.addValue(7445, "JFreeSVG", "Warm-up");
         dataset.addValue(24448, "Batik", "Warm-up");
         dataset.addValue(4297, "JFreeSVG", "Test");
         dataset.addValue(21022, "Batik", "Test");
+
+         */
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //where add values to be plotted
+
+        dataset.addValue(7445, "Ants", "1");
+        dataset.addValue(24448, "DoodleBugs", "1");
+        dataset.addValue(4297, "Ants", "2");
+        dataset.addValue(21022, "DoodleBugs", "2");
         return dataset;
     }
 
@@ -107,11 +118,11 @@ public class BarChartDemo extends ApplicationFrame {
      * @return The chart.
      */
     private static JFreeChart createChart(CategoryDataset dataset) {
-        JFreeChart chart = ChartFactory.createBarChart(
-                "Performance: JFreeSVG vs Batik", null /* x-axis label*/,
-                "Milliseconds" /* y-axis label */, dataset);
-        chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG "
-                + "format (lower bars = better performance)"));
+        JFreeChart chart = ChartFactory.createLineChart(
+                "DoodleBug and Ant Population v. Time","Time" /* x-axis label*/,
+                "# of organisms" /* y-axis label */, dataset); //need to change this to a line graph. changed to createLineChart
+        //chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG "
+                //+ "format (lower bars = better performance)"));
         chart.setBackgroundPaint(null);
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
         plot.setBackgroundPaint(null);
@@ -126,8 +137,8 @@ public class BarChartDemo extends ApplicationFrame {
 
         NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
         rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-        BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setDrawBarOutline(false);
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setDrawOutlines(false);
         chart.getLegend().setFrame(BlockBorder.NONE);
         return chart;
     }

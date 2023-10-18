@@ -149,24 +149,38 @@ public class Main {
         }
 
 
+        //append new vals to dataset everytime. then, pass dataset into BarChartDemo constructor
 
-        BarChartDemo demo = new BarChartDemo("JFreeChart: BarChartDemo1.java");
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //where add values to be plotted
+
+        //create chart
+        BarChartDemo demo = new BarChartDemo(dataset);
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+
+        /*
+        dataset.addValue(7445, "Ants", "1");
+        dataset.addValue(24448, "DoodleBugs", "1");
+        dataset.addValue(4297, "Ants", "2");
+        dataset.addValue(21022, "DoodleBugs", "2");
+
+
+        BarChartDemo demo = new BarChartDemo(dataset);
         demo.pack();
         RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
 
 
+        //((Integer) myVal).toString()) as col key
+        dataset.addValue(4297, "Ants", "3");
+        dataset.addValue(21022, "DoodleBugs", "3");
 
+        demo.pack();
 
-
-
-
-
-
-
+         */
 
         //main loop
-
 
         int j = 0;
         String readin = scnr.nextLine();
@@ -194,6 +208,7 @@ public class Main {
                 //orgs
                 //start with dbs, then go to ants
 
+                int dbPop = 0; //dbpop at certain timestep
                 for (int i = 0; i < allOrgs.size(); i++) {
                     if (allOrgs.get(i) instanceof dB) {
                         //printArrayList(allOrgs.get(i).getCoordsAround());
@@ -206,12 +221,16 @@ public class Main {
 
 
                         } else {
+                            dbPop++;
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
                         }
                     }
                 }
 
+                dataset.addValue(dbPop, "DoodleBugs", ((Integer) j).toString());
 
+
+                int antPop = 0;
                 for (int i = 0; i < allOrgs.size(); i++) {
                     if (allOrgs.get(i) instanceof Ants) {
                         if (allOrgs.get(i).isDead()) {
@@ -220,13 +239,14 @@ public class Main {
 
                         } else {
                             //implement draw in move
+                            antPop++;
                             allOrgs.get(i).move(allOrgs.get(i).getValidCoords().get(rand.nextInt(allOrgs.get(i).getValidCoords().size())));
 
                         }
                     }
                 }
 
-
+                dataset.addValue(antPop, "Ants", ((Integer) j).toString());
 
             /*
                 for (int i = 0; i < allOrgs.size(); i++) {
@@ -238,6 +258,8 @@ public class Main {
                 }
             */
                 //System.out.println(allOrgs.size());
+
+                demo.pack();
 
                 readin = scnr.nextLine();
             }
