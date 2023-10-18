@@ -47,6 +47,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.CategoryPlot;
@@ -130,7 +131,10 @@ public class BarChartDemo extends ApplicationFrame {
         //chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG "
                 //+ "format (lower bars = better performance)"));
         chart.setBackgroundPaint(null);
+
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
+
+
         plot.setBackgroundPaint(null);
 
         // ******************************************************************
