@@ -37,7 +37,7 @@ public class dB extends Organism{
     }
 
     public void move(ArrayList<Integer> coords){
-        System.out.println("in db move");
+        //System.out.println("in db move");
         super.move(coords); //first, move the dB
         //check if the dB moved to a cell with an Ant. if so,  change the Ant's status to dead
         boolean hasEaten = false;
