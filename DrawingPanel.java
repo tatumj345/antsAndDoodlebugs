@@ -861,6 +861,7 @@ public final class DrawingPanel implements ImageObserver {
 			panel.addMouseMotionListener(mouseListener);
 			
 			// main window frame
+/*
 			frame = new JFrame(TITLE);
 			// frame.setResizable(false);
 			windowListener = new DPWindowListener();
@@ -872,16 +873,25 @@ public final class DrawingPanel implements ImageObserver {
 			frame.getContentPane().add(statusBar, "South");
 			frame.setBackground(Color.DARK_GRAY);
 
+ */
+
+
+			Main.frame.getContentPane().add(panel);
+
+
 			// menu bar
 			actionListener = new DPActionListener();
-			setupMenuBar();
+			//setupMenuBar();
 			
-			frame.pack();
-			center(frame);
+			Main.frame.pack();
+			//center(frame);
+			/*
 			frame.setVisible(true);
 			if (!shouldSave()) {
 				toFront(frame);
 			}
+
+			 */
 			
 			// repaint timer so that the screen will update
 			createTime = System.currentTimeMillis();

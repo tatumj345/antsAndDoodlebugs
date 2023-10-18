@@ -79,6 +79,8 @@ public class BarChartDemo extends ApplicationFrame {
         super("Population"); //from ApplicationFrame
         //CategoryDataset dataset = createDataset(); //bar chart settings
         JFreeChart chart = createChart(dataset);
+        Main.frame.getContentPane().add(new ChartPanel(chart));
+        /*
         ChartPanel chartPanel = new ChartPanel(chart, false);
         chartPanel.setBackground(null);
         chartPanel.setFillZoomRectangle(true);
@@ -86,6 +88,10 @@ public class BarChartDemo extends ApplicationFrame {
         chartPanel.setDismissDelay(Integer.MAX_VALUE);
         chartPanel.setPreferredSize(new Dimension(500, 270));
         setContentPane(chartPanel);
+
+         */
+        Main.frame.pack();
+        Main.frame.setVisible(true);
     }
 
     /**

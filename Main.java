@@ -20,6 +20,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import javax.swing.*;
+
 //getters and setter for static variables in Organism
 
 //add graphing functionality
@@ -31,8 +33,21 @@ import org.jfree.ui.RefineryUtilities;
 public class Main {
     static ArrayList<Organism> allOrgs = new ArrayList<>();
 
+    static JFrame frame = new JFrame("Doodlebugs and Ants");
+
     public static void main(String[] args) {
+        //demo.pack();
+        //RefineryUtilities.centerFrameOnScreen(demo);
+        //demo.setVisible(true);
+
+        frame.setLayout( new FlowLayout() );
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //where add values to be plotted
+        //create chart
+        BarChartDemo demo = new BarChartDemo(dataset);
+
         Scanner scnr = new Scanner(System.in); //ERROR HANDLING, improper input and negative ints
+        /*
         System.out.println("Type number of rows (positive integer, suggested = 10):");
 
         int rowsIn = scnr.nextInt();
@@ -47,27 +62,13 @@ public class Main {
             colsIn = scnr.nextInt();
         }
 
+         */
+
+        int rowsIn = 20;
+        int colsIn = 20;
+        int cellsIn = 15;
+
         int maxOrgs = rowsIn * colsIn;
-        System.out.println("Type dimension of cells in pixels (suggested = 50 pixels for 10 by 10 grid):");
-        int cellsIn = scnr.nextInt();
-        while (cellsIn <= 0) {
-            System.out.println("Input positive integer for cell dimension in pixels:");
-            cellsIn = scnr.nextInt();
-        }
-        System.out.println("Type the number of initial doodlebugs- must be less than or equal to: " + maxOrgs);
-        int dBCount = scnr.nextInt();
-        while (dBCount < 0 && dBCount > maxOrgs) {
-            System.out.println("Input positive integer or zero for number of doodlebugs. Number of doodlebugs must be less than or equal to: " + maxOrgs);
-            dBCount = scnr.nextInt();
-        }
-        System.out.println("Type the number of ants- must be less than or equal to: " + (maxOrgs - dBCount));
-        int antsCount = scnr.nextInt();
-        while (antsCount < 0 && antsCount > (maxOrgs - dBCount)) {
-            System.out.println("Input positive integer or zero for number of ants- must be less than or equal to: " + (maxOrgs - dBCount));
-            antsCount = scnr.nextInt();
-        }
-        System.out.println("Creating window. Doodlebugs = red, ants = black.");
-        System.out.println("Press enter to start:");
 
         Organism.cellDimension = cellsIn; //50
         Organism.rowmax = rowsIn; //10
@@ -83,7 +84,6 @@ public class Main {
         int colmax = Organism.colmax; //number of cols of cells
         int buffer = Organism.buffer;
 
-        //create window
         DrawingPanel panel = new DrawingPanel(colmax * cellDimension + 2 * buffer, rowmax * cellDimension + 2 * buffer);
         //draw the grid on the window
         Graphics gBlack = panel.getGraphics();
@@ -100,6 +100,35 @@ public class Main {
                 allInitialPos.add(newA);
             }
         }
+        /*
+        System.out.println("Type dimension of cells in pixels (suggested = 50 pixels for 10 by 10 grid):");
+        int cellsIn = scnr.nextInt();
+        while (cellsIn <= 0) {
+            System.out.println("Input positive integer for cell dimension in pixels:");
+            cellsIn = scnr.nextInt();
+        }
+
+         */
+
+        System.out.println("Type the number of initial doodlebugs- must be less than or equal to: " + maxOrgs);
+        int dBCount = scnr.nextInt();
+        while (dBCount < 0 && dBCount > maxOrgs) {
+            System.out.println("Input positive integer or zero for number of doodlebugs. Number of doodlebugs must be less than or equal to: " + maxOrgs);
+            dBCount = scnr.nextInt();
+        }
+        System.out.println("Type the number of ants- must be less than or equal to: " + (maxOrgs - dBCount));
+        int antsCount = scnr.nextInt();
+        while (antsCount < 0 && antsCount > (maxOrgs - dBCount)) {
+            System.out.println("Input positive integer or zero for number of ants- must be less than or equal to: " + (maxOrgs - dBCount));
+            antsCount = scnr.nextInt();
+        }
+        System.out.println("Creating window. Doodlebugs = red, ants = black.");
+        System.out.println("Press enter to start:");
+
+
+
+        //create window
+
 
         //ref point for drawing organisms is their upper left corner.
         //Bounds for organisms in x: [buffer, buffer + colmax*cellDimension]
@@ -150,15 +179,15 @@ public class Main {
 
 
         //append new vals to dataset everytime. then, pass dataset into BarChartDemo constructor
-
+/*
         DefaultCategoryDataset dataset = new DefaultCategoryDataset(); //where add values to be plotted
 
         //create chart
         BarChartDemo demo = new BarChartDemo(dataset);
         demo.pack();
-        RefineryUtilities.centerFrameOnScreen(demo);
+        //RefineryUtilities.centerFrameOnScreen(demo);
         demo.setVisible(true);
-
+/*
         /*
         dataset.addValue(7445, "Ants", "1");
         dataset.addValue(24448, "DoodleBugs", "1");
