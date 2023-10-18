@@ -52,4 +52,36 @@ BarChartDemo.java is adapted from: BarChartDemo1.java. Copyright notice:
         * 11-Mar-2014 : Use new ChartFactory method (DG);
         * 25-Jun-2014 : Update to use real data (DG);
         *
+
+DrawingPanel.java authorship and information:
+/*
+ * =====================================================================
+ * DrawingPanel.java
+ * Simplified Java drawing window class
+ * to accompany Building Java Programs textbook and associated materials
+ * 
+ * authors: Stuart Reges, University of Washington
+ *          Marty Stepp
+ * version: 4.07, 2022/04/07 (BJP 5th edition)
+ * (make sure to also update version string in Javadoc header below!)
+ * =====================================================================
+ *
+ * COMPATIBILITY NOTE: This version of DrawingPanel requires Java 8 or higher.
+ * If you need a version that works on Java 7 or lower, please see our
+ * web site at http://www.buildingjavaprograms.com/ .
+ * To make this file work on Java 7 and lower, you must make two small
+ * modifications to its source code.
+ * Search for the two occurrences of the annotation @FunctionalInterface
+ * and comment them out or remove those lines.
+ * Then the file should compile and run properly on older versions of Java.
+ * 
+ * =====================================================================
+ * 
+ * The DrawingPanel class provides a simple interface for drawing persistent
+ * images using a Graphics object.  An internal BufferedImage object is used
+ * to keep track of what has been drawn.  A client of the class simply
+ * constructs a DrawingPanel of a particular size and then draws on it with
+ * the Graphics object, setting the background color if they so choose.
+ * See JavaDoc comments below for more information.
+ */
         
