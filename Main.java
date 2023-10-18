@@ -1,9 +1,24 @@
-
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
 
 //getters and setter for static variables in Organism
 
@@ -132,6 +147,23 @@ public class Main {
             allOrgs.get(i).draw();
            // allOrgs.get(i).deleteOrg();
         }
+
+
+
+        BarChartDemo demo = new BarChartDemo("JFreeChart: BarChartDemo1.java");
+        demo.pack();
+        RefineryUtilities.centerFrameOnScreen(demo);
+        demo.setVisible(true);
+
+
+
+
+
+
+
+
+
+
 
         //main loop
 
