@@ -78,7 +78,7 @@ public class Main {
         //int dBCount = 3;
         //int antsCount = 2;
 
-
+//
         int cellDimension = Organism.cellDimension;// cell width and height
         int rowmax = Organism.rowmax; //number of rows of cells
         int colmax = Organism.colmax; //number of cols of cells
