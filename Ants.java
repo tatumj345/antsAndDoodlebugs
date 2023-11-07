@@ -26,7 +26,7 @@ public class Ants extends Organism{
 
 
         allCoordsAround.removeAll(coordsWithdB);
-        allCoordsAround.removeAll(coordsWithAnt);
+        //allCoordsAround.removeAll(coordsWithAnt);
 
         return allCoordsAround;
     }

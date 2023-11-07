@@ -36,7 +36,7 @@ public class Organism {
     }
 
     public void move(ArrayList<Integer> coords){ //maybe add something here to make sure coords is 2 long
-        //move to the coord pair specified by the input
+        ////move to the coord pair specified by the input
         Graphics gBlack = this.panel.getGraphics();
         gBlack.setColor(Color.white);
         gBlack.fillRect(this.getX(), this.getY(), this.cellDimension, this.cellDimension);

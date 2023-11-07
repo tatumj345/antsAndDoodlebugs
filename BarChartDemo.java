@@ -67,7 +67,7 @@ public class BarChartDemo extends ApplicationFrame {
     static {
         // set a theme using the new shadow generator feature available in
         // 1.0.14 - for backwards compatibility it is not enabled by default
-        //ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
+        //.ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
                // true));
     }
 

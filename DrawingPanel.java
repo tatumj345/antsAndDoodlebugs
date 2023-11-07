@@ -857,7 +857,6 @@ public final class DrawingPanel implements ImageObserver {
 			Main.c.fill = GridBagConstraints.HORIZONTAL;
 
 			Main.c.gridx = 1;
-
 			Main.c.gridy = 0;
 
 			//Main.frame.getContentPane().add(panel);
