@@ -4,7 +4,7 @@ Ants and Doodlebugs- A simulation to demonstrate the effects of predator-prey re
 Tatum Johnson
 10/17/23
 
-About: Ants and doodlebugs live in a habitat, and doodlebugs prey on ants. The habitat is represented by a grid, the ants are represented by black dots, and the doodlebugs are represented by red dots. Users can specify the size of the habitat and the initial populations of ants and doodlebugs. When the user presses enter, time in the simulation advances by one "timestep." Every timestep, the ants and doodlebugs move according to the following rules: 
+About: Ants and doodlebugs live in a habitat, and doodlebugs prey on ants. The habitat is represented by a grid, the ants are represented by blue dots, and the doodlebugs are represented by red dots. Users can specify the initial populations of ants and doodlebugs. (Max habitat capacity = 400 organisms total.) When the user hits "Go", time in the simulation advances by one "timestep." Every timestep, the ants and doodlebugs move according to the following rules: 
 
 Rules for ants: Every timestep, each ant randomly moves to an empty adjacent cell in the grid. If the ant survives for three timesteps, it spawns another ant in a randomly selected adjacent cell if there is room.
 

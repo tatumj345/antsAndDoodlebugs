@@ -47,6 +47,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.CategoryPlot;
@@ -66,7 +67,7 @@ public class BarChartDemo extends ApplicationFrame {
     static {
         // set a theme using the new shadow generator feature available in
         // 1.0.14 - for backwards compatibility it is not enabled by default
-        //ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
+        //.ChartFactory.setChartTheme(new StandardChartTheme("JFree/Shadow",
                // true));
     }
 
@@ -79,13 +80,13 @@ public class BarChartDemo extends ApplicationFrame {
         super("Population"); //from ApplicationFrame
         //CategoryDataset dataset = createDataset(); //bar chart settings
         JFreeChart chart = createChart(dataset);
-        ChartPanel chartPanel = new ChartPanel(chart, false);
-        chartPanel.setBackground(null);
-        chartPanel.setFillZoomRectangle(true);
-        chartPanel.setMouseWheelEnabled(true);
-        chartPanel.setDismissDelay(Integer.MAX_VALUE);
-        chartPanel.setPreferredSize(new Dimension(500, 270));
-        setContentPane(chartPanel);
+
+        Main.frame.add(new ChartPanel(chart), Main.c);
+
+       // Main.frame.getContentPane().add(new ChartPanel(chart));
+
+        //Main.frame.pack();
+        //Main.frame.setVisible(true);
     }
 
     /**
@@ -124,7 +125,10 @@ public class BarChartDemo extends ApplicationFrame {
         //chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG "
                 //+ "format (lower bars = better performance)"));
         chart.setBackgroundPaint(null);
+
         CategoryPlot plot = (CategoryPlot) chart.getPlot();
+
+
         plot.setBackgroundPaint(null);
 
         // ******************************************************************

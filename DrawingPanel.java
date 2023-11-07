@@ -29,31 +29,10 @@
  * See JavaDoc comments below for more information.
  */
 
-import java.awt.FontMetrics;
-import java.awt.Rectangle;
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import java.util.Collections;
-import java.awt.AlphaComposite;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Composite;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -861,6 +840,7 @@ public final class DrawingPanel implements ImageObserver {
 			panel.addMouseMotionListener(mouseListener);
 			
 			// main window frame
+/*
 			frame = new JFrame(TITLE);
 			// frame.setResizable(false);
 			windowListener = new DPWindowListener();
@@ -872,16 +852,31 @@ public final class DrawingPanel implements ImageObserver {
 			frame.getContentPane().add(statusBar, "South");
 			frame.setBackground(Color.DARK_GRAY);
 
+ */
+
+			Main.c.fill = GridBagConstraints.HORIZONTAL;
+
+			Main.c.gridx = 1;
+			Main.c.gridy = 0;
+
+			//Main.frame.getContentPane().add(panel);
+
+			Main.frame.add(panel);
+
+
 			// menu bar
 			actionListener = new DPActionListener();
-			setupMenuBar();
+			//setupMenuBar();
 			
-			frame.pack();
-			center(frame);
+			Main.frame.pack();
+			//center(frame);
+			/*
 			frame.setVisible(true);
 			if (!shouldSave()) {
 				toFront(frame);
 			}
+
+			 */
 			
 			// repaint timer so that the screen will update
 			createTime = System.currentTimeMillis();
