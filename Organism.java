@@ -167,7 +167,7 @@ public void draw(){
                 Main.allOrgs.add(new dB(randomCoord.get(0), randomCoord.get(1), panel, Color.RED));
                 Main.allOrgs.get(Main.allOrgs.size()-1).draw();
             } else if (this instanceof Ants) {
-                Main.allOrgs.add(new Ants(randomCoord.get(0), randomCoord.get(1), panel, Color.BLACK));
+                Main.allOrgs.add(new Ants(randomCoord.get(0), randomCoord.get(1), panel, Color.blue));
                 Main.allOrgs.get(Main.allOrgs.size()-1).draw();
             }
         }
